@@ -19,7 +19,7 @@ class Lin {
         Array.from(HTMLelement).forEach((element) => {
             element.style.position = 'relative';
             element.style.display = 'inline-block';
-            element.style.height = window.screen.availWidth + 'px';
+            element.style.height = window.screen.availHeight + 'px';
             element.style.width = 100 + '%';
 
             /*
@@ -28,6 +28,12 @@ class Lin {
             element.addEventListener('wheel',(event)=>{
                 event.preventDefault();
                 this.linNum -= event.deltaY;
+                if(this.linNum >= 0){
+                    this.linNum = 0;
+                }
+                if (this.linNum <= -window.screen.availHeight) { 
+                    this.linNum = -window.screen.availHeight;
+                }
                 this.linGetBox('lin-box')
             })
         })
