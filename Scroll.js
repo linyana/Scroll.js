@@ -11,9 +11,14 @@ class Lin {
     * @return void
     */
     constructor(){
-        this.linNum = 0
+        this.linNum = 0;
     }
 
+    /*
+    * @function control this page,set come essential data
+    * @param element{string} tag name ('lin-container')
+    * @return void
+    */
     linGetContainer(element){
         const HTMLelement = document.getElementsByTagName(element)
         Array.from(HTMLelement).forEach((element) => {
@@ -34,16 +39,21 @@ class Lin {
                 if (this.linNum <= -window.screen.availHeight) { 
                     this.linNum = -window.screen.availHeight;
                 }
-                this.linGetBox('lin-box')
+                this.linGetBox('lin-box');
             })
         })
     }
 
+    /*
+    * @function read the attribution  for lin-box and set them with these attributions.
+    * @param element{string} tag name ('lin-box')
+    * @return void
+    */
     linGetBox(element) { 
         const HTMLelement = document.getElementsByTagName(element)
         Array.from(HTMLelement).forEach((element) => {
             element.style.position = 'absolute';
-            element.style.transition = 'top' + ' ' + '0.9s' + ' ' + 'ease-out' 
+            element.style.transition = 'top' + ' ' + '0.9s' + ' ' + 'ease-out';
             if (element.getAttribute('l')) {
                 element.style.left = element.getAttribute('l') +'px';
             } else if (element.getAttribute('r')) {
@@ -69,10 +79,10 @@ let lin = new Lin()
 
 window.addEventListener('load',function(){
     if(document.getElementsByTagName('lin-container')){
-        lin.linGetContainer('lin-container')
+        lin.linGetContainer('lin-container');
     }
     if(document.getElementsByTagName('lin-box')){
-        lin.linGetBox('lin-box')
+        lin.linGetBox('lin-box');
     }
 })
 
