@@ -5,10 +5,10 @@
 > 最简单的使用方法是在body里面的所有内容外面，分别嵌套一个<lin-container>双标签和<lin-box>双标签。比如像下面这样：
 ```
   <body>
-      <lin-container>
-        <lin-box l="0" t="0">
-            <div>我是内容</div>
-        </lin-box>
+    <lin-container>
+      <lin-box l="0" t="0">
+          <div>我是内容</div>
+      </lin-box>
     </lin-container>
   </body>
 ```
