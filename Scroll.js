@@ -4,6 +4,7 @@ history.scrollRestoration = 'manual';
 // Hide the browse scroll bar
 document.documentElement.style.overflowY = 'hidden';
 
+// main
 class Lin {
     /*
     * @function initialize 
