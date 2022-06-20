@@ -58,7 +58,11 @@ class Lin {
             for (let data of Data) {
                 if (element.getAttribute('lin-name') === data.name) {
                     element.style.position = 'absolute';
-                    element.style.transition = 'top' + ' ' + '0.9s' + ' ' + 'ease-out';
+                    if (data.direction) {
+                        element.style.transition = data.direction + ' 0.9s ease-out';
+                    } else { 
+                        element.style.transition = 'top 0.9s ease-out'
+                    }
                     element.style.left = data.left + 'px' || 'auto';
                     element.style.top = data.top + 'px' || 'auto';
                     element.style.right = data.right + 'px' || 'auto';
@@ -73,11 +77,14 @@ class Lin {
         Array.from(HTMLelement).forEach((element) => {
             for (let data of Data) {
                 if (element.getAttribute('lin-name') === data.name) {
-                    if (((this.linNum >= data.start && this.linNum <= data.end) || (this.linNum <= data.start && this.linNum >= data.end)) && data.position) {
-                        let speed = this.linData.linSpeed / data.speed
-                        element.style[data.position] = data[data.position] + this.linNum + 'px' || 'auto';
-                    } else { 
-                        element.style.top= data.top + this.linNum + 'px' || 'auto';
+                    // 判断当前位置是否在盒子的起点和终点之间
+                    if ((this.linNum >= data.start && this.linNum <= data.end) || (this.linNum <= data.start && this.linNum >= data.end)) {
+                        if (data.direction) {
+                            let num = (data.end - data.start)
+                            element.style[data.direction] = data[data.direction] + this.linNum + 'px' || 'auto';
+                        } else {
+                            element.style.top = data.top + this.linNum + 'px' || 'auto';
+                        }
                     }
                 }
             }
