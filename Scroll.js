@@ -60,7 +60,7 @@ class Lin {
                     element.style.position = 'absolute';
                     if (data.direction) {
                         element.style.transition = data.direction + ' 0.9s ease-out';
-                    } else { 
+                    } else {
                         element.style.transition = 'top 0.9s ease-out'
                     }
                     element.style.left = data.left + 'px' || 'auto';
@@ -77,18 +77,31 @@ class Lin {
         Array.from(HTMLelement).forEach((element) => {
             for (let data of Data) {
                 if (element.getAttribute('lin-name') === data.name) {
-                    // 判断当前位置是否在盒子的起点和终点之间
-                    if ((this.linNum >= data.start && this.linNum <= data.end) || (this.linNum <= data.start && this.linNum >= data.end)) {
-                        if (data.direction) {
-                            let num = (data.end - data.start)
-                            element.style[data.direction] = data[data.direction] + this.linNum + 'px' || 'auto';
-                        } else {
-                            element.style.top = data.top + this.linNum + 'px' || 'auto';
+                    let direction = data.direction || 'top';
+                    // 如果start和end同时不为空
+                    if (data.start !== null && data.end !== null) {
+                        if (data.start <= data.end) {
+                            if (this.linNum <= data.start) {
+                                element.style[direction] = -data.start + 'px';
+                            } else if (this.linNum >= data.end) {
+                                element.style[direction] = -data.end + 'px';
+                            }
+                        }
+                        if (this.linNum >= data.start) {
+                            element.style[direction] = -data.start + 'px';
+                        } else if (this.Num <= data.end) {
+                            element.style[direction] = -data.end + 'px';
+                        }
+                        // 判断linNum在start和end之间的情况
+                        else if ((this.linNum >= data.start && this.linNum <= data.end) || (this.linNum <= data.start && this.linNum >= data.end)) {
+                            element.style[direction] = this.linNum + 'px';
                         }
                     }
+                    console.log('data.start:' + data.start);
+                    console.log('linNum:' + this.linNum);
+                    console.log('top:' + element.style.top);
                 }
             }
         })
     }
-
 }
