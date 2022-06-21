@@ -63,10 +63,10 @@ class Lin {
                     } else {
                         element.style.transition = 'top 0.9s ease-out'
                     }
-                    element.style.left = data.left + 'px' || 'auto';
-                    element.style.top = data.top + 'px' || 'auto';
-                    element.style.right = data.right + 'px' || 'auto';
-                    element.style.bottom = data.bottom + 'px' || 'auto';
+                    element.style.left = -data.left + 'px' || 'auto';
+                    element.style.top = -data.top + 'px' || 'auto';
+                    element.style.right = -data.right + 'px' || 'auto';
+                    element.style.bottom = -data.bottom + 'px' || 'auto';
                 }
             }
         })
