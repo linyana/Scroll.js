@@ -44,6 +44,7 @@ class Lin {
                 // 限制最低点
                 if (this.linNum >= window.screen.availHeight) {
                     this.linNum = window.screen.availHeight;
+                    console.log(window.screen.availHeight)
                 }
                 this.linScrollBox();
             })
@@ -60,14 +61,19 @@ class Lin {
                 if (element.getAttribute('lin-name') === data.name) {
                     element.style.position = 'absolute';
                     if (data.direction) {
-                        element.style.transition = data.direction + ' 0.9s ease-out';
+                        element.style.transition = data.direction + ' 1s ease-out';
                     } else {
-                        element.style.transition = 'top 0.9s ease-out'
+                        element.style.transition = 'top 1s ease-out'
                     }
                     element.style.left = data.left + 'px' || 'auto';
                     element.style.top = data.top + 'px' || 'auto';
                     element.style.right = data.right + 'px' || 'auto';
                     element.style.bottom = data.bottom + 'px' || 'auto';
+                }
+                else if (element.getAttribute('lin-name') === null) {
+                    element.style.position = 'absolute';
+                    element.style.transition = 'all 1s ease-out';
+                    element.style.top = -this.linNum + 'px';
                 }
             }
         })
@@ -103,6 +109,9 @@ class Lin {
                             console.error('请勿把end设置成大于start的值')
                         }
                     }
+                }
+                else if (element.getAttribute('lin-name') === null) {
+                    element.style.top = -this.linNum + 'px';
                 }
             }
         })
