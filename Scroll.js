@@ -14,6 +14,7 @@ class Lin {
         this.linNum = 0;
         this.linSetContainer();
         this.linSetBox();
+        this.linSetScrollBar();
     }
 
     // 初始化
@@ -24,6 +25,7 @@ class Lin {
             element.style.display = 'inline-block';
             element.style.height = window.screen.availHeight + 'px';
             element.style.width = '100%';
+            element.style.overflow = 'hidden';
             /*
              * @function control the way with mouse scrolls
              * @function 捕获鼠标滚动事件并设置滚动速度
@@ -44,9 +46,11 @@ class Lin {
                 // 限制最低点
                 if (this.linNum >= window.screen.availHeight) {
                     this.linNum = window.screen.availHeight;
-                    console.log(window.screen.availHeight)
                 }
                 this.linScrollBox();
+                if (document.getElementsByTagName('lin-scroll-bar')) {
+                    this.linScrollBar();
+                }
             })
         });
     }
@@ -114,6 +118,42 @@ class Lin {
                     element.style.top = -this.linNum + 'px';
                 }
             }
+        });
+    }
+
+    // 初始化滚动条
+    linSetScrollBar() {
+        const HTMLelement = document.getElementsByTagName('lin-scroll-bar');
+        Array.from(HTMLelement).forEach((element) => {
+            element.style.width = '10px';
+            element.style.zIndex = '999999999';
+            element.style.height = '100%';
+            element.style.position = 'absolute';
+            element.style.right = '0';
+            element.style.top = '0';
+            element.style.border = '1px solid #cacdd1';
+            element.style.backgroundColor = '#fff';
+            // 创建滚动条
+            const e = document.createElement('lin-bar');
+            element.appendChild(e);
+            e.style.width = '8px';
+            e.style.position = 'absolute';
+            e.style.height = '300px';
+            e.style.backgroundColor = '#3bbbbb';
+            e.style.left = '1px';
+            e.style.borderRadius = '4px';
+            e.style.transition = 'all 0.8s ease-out'
+        })
+    }
+
+    // 滚动
+    linScrollBar() {
+        const HTMLelement = document.getElementsByTagName('lin-bar');
+        Array.from(HTMLelement).forEach((element) => {
+            const totalHeight = window.screen.availHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const top = (this.linNum / totalHeight) * (clientHeight - element.offsetHeight)
+            element.style.top = top + 'px';
         })
     }
 }
