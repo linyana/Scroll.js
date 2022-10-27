@@ -11,7 +11,9 @@ class Lin {
     /*
      * @function Read the information entered by the user and do some initialization
      * @function 读取用户输入的信息，并且进行一些初始化。
-     * @param  data {{}[]} 
+     * @param data {{}[]} the information entered by the user
+     * @param data {{}[]} 用户输入的信息 
+     * @return void
      */
     constructor(data) {
         this.linData = data;
@@ -21,7 +23,11 @@ class Lin {
         this.linSetScrollBar();
     }
 
-    // 初始化
+    /*
+     * @function Initialize the basic properties of lin-container
+     * @function 初始化lin-container的基本属性
+     * @return void
+     */
     linSetContainer() {
         const HTMLelement = document.getElementsByTagName('lin-container');
         Array.from(HTMLelement).forEach((element) => {
@@ -60,6 +66,11 @@ class Lin {
         });
     }
 
+    /*
+     * @function Initialize the basic properties of lin-page
+     * @function 初始化lin-page的基本属性
+     * @return void
+     */
     linSetPage() {
         const HTMLelement = document.getElementsByTagName('lin-page');
         Array.from(HTMLelement).forEach((element) => {
@@ -72,7 +83,11 @@ class Lin {
     }
 
 
-    // 初始化linBox
+    /*
+     * @function Initialize the basic properties of lin-box
+     * @function 初始化lin-box的基本属性
+     * @return void
+     */
     linSetBox() {
         const HTMLelement = document.getElementsByTagName('lin-box');
         // 遍历linBox并给linBox设置一些基本属性
@@ -97,7 +112,11 @@ class Lin {
         })
     }
 
-    // 滚动
+    /*
+     * @function Determine what to do while the mouse is scrolling
+     * @function 判断鼠标滚动时应该进行的操作
+     * @return void
+     */
     linScrollBox() {
         const HTMLelement = document.getElementsByTagName('lin-box');
         Array.from(HTMLelement).forEach((element) => {
@@ -139,7 +158,11 @@ class Lin {
         });
     }
 
-    // 初始化滚动条
+    /*
+     * @function Initialize the basic properties of lin-scroll-bar
+     * @function 初始化lin-scroll-bar的基本属性
+     * @return void
+    */
     linSetScrollBar() {
         const HTMLelement = document.getElementsByTagName('lin-scroll-bar');
         Array.from(HTMLelement).forEach((element) => {
@@ -173,7 +196,11 @@ class Lin {
         })
     }
 
-    // 滚动
+    /*
+     * @function Calculate how far the scroll bar should scroll while the mouse is scrolling
+     * @function 计算鼠标滚动时滚动条应该滚动的距离
+     * @return void
+    */
     linScrollBar() {
         const HTMLelement = document.getElementsByTagName('lin-bar');
         Array.from(HTMLelement).forEach((element) => {
