@@ -79,19 +79,15 @@ class Lin {
         Array.from(HTMLelement).forEach((element) => {
             if (this.linData.linBox) {
                 for (let data of this.linData.linBox) {
-                    if (element.getAttribute('lin-name') === data.name) {
+                    if (element.getAttribute('name') === data.name) {
                         element.style.position = 'absolute';
-                        if (data.direction) {
-                            element.style.transition = data.direction + ' 1s ease-out';
-                        } else {
-                            element.style.transition = 'top 1s ease-out'
-                        }
+                        element.style.transition = 'all 1s ease-out'
                         element.style.left = data.left + 'px' || 'auto';
                         element.style.top = data.top + 'px' || 'auto';
                         element.style.right = data.right + 'px' || 'auto';
                         element.style.bottom = data.bottom + 'px' || 'auto';
                     }
-                    else if (element.getAttribute('lin-name') === null) {
+                    else if (element.getAttribute('name') === null) {
                         element.style.position = 'absolute';
                         element.style.transition = 'all 1s ease-out';
                         element.style.top = -this.linNum + 'px';
@@ -107,10 +103,11 @@ class Lin {
         Array.from(HTMLelement).forEach((element) => {
             if (this.linData.linBox) {
                 for (let data of this.linData.linBox) {
-                    if (element.getAttribute('lin-name') === data.name) {
+                    if (element.getAttribute('name') === data.name) {
                         let direction = data.direction || 'top';
                         // 如果start和end同时不为空
-                        if (data.start && data.end) {
+                        console.log(data.start)
+                        if (data.start !== null && data.end !== null) {
                             // 判断开始和结尾
                             if (data.start <= data.end) {
                                 if (this.linNum <= data.start) {
@@ -120,12 +117,13 @@ class Lin {
                                 }
                                 if (this.linNum >= data.start && this.linNum <= data.end) {
                                     // 如果设置了起点和终点
-                                    if (data.from && data.to) {
+                                    if (data.from !== null&& data.to !== null) {
                                         element.style[direction] = (((this.linNum - data.start) / (data.end - data.start)) * (data.to - data.from)) + data.from + 'px';
                                     } else {
                                         element.style[direction] = this.linNum + 'px';
                                     }
                                 }
+                                console.log(element.offsetTop)
                             }
                             // 判断开始和结尾
                             else if (data.start > data.end) {
@@ -133,7 +131,7 @@ class Lin {
                             }
                         }
                     }
-                    else if (element.getAttribute('lin-name') === null) {
+                    else if (element.getAttribute('name') === null) {
                         element.style.top = -this.linNum + 'px';
                     }
                 }
