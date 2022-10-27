@@ -33,7 +33,7 @@
   </body>
 ```
 ## 滚动条样式设置
-滚动条配置项的设置方法例子:
+滚动条配置项的设置demo:
 ```
   <script>
     new Lin({
@@ -55,7 +55,7 @@
 
 ## 页面滚动速度
 我们可以通过linSpeed配置项来更改页面滚动的速度。
-页面滚动速度配置方法例子:
+页面滚动速度配置demo:
 ```
   <script>
     new Lin({
@@ -66,3 +66,58 @@
 | 配置项 | 说明 | 默认 |
 | --- | -- | -- |
 | linSpeed | 更改页面的滚动速度 | 鼠标的滚动速度 |
+
+## 自定义盒子
+这里我们将介绍如何将一个盒子自由切入切出，我们将用到lin-box双标签，
+
+自定义盒子配置demo:
+```
+<body>
+  <lin-container>
+    <lin-page>
+      <div>
+        其他无关的div
+      </div>
+      <lin-box name="test">
+        <div class="box">
+          内容
+        </div>
+      </lin-box>
+    </lin-page>
+  </lin-container>
+</body>
+
+<script>
+  new Lin({
+      linBox: [
+        {
+          name: "test",
+          left: 100,
+          top: 100,
+          start: 0,
+          end: 500,
+          direction: 'left',
+          from: 100,
+          to: 500,
+        }
+      ]
+  })
+</script>
+```
+
+再配置一些样式我们就能看到这个盒子可以在滚动页面的同时跟随鼠标在特定区域中从左到右或者从右到左滚动了。
+
+| 配置项 | 说明 | 默认 | 
+| --- | -- | -- |
+| name | 元素的名称，用于对应lin-box的name | null |
+| left | 绝对定位的left | 0 |
+| right | 绝对定位的right | 0 | 
+| top | 绝对定位的top | 0 | 
+| bottom | 绝对定位的bottom | 0 |
+| direction | 需要滚动的方向 | top |
+| start | 从什么时间开始滚动,对应linSpeed | null |
+| end | 从说明时间结束滚动,对于linSpeed | null |
+| from | 从哪个位置开始滚动,应与direction中方向的值相对应 | null |
+| to | 滚动的结束位置 | null |
+
+我们推荐将上方除了绝对定位的配置项以外都配置好，以免出现一些意料之外的错误。需要注意的是绝对定位的定位方向只能配置两个。
