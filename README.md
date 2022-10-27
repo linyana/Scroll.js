@@ -32,4 +32,24 @@
     </script>
   </body>
 ```
+## 滚动条样式设置
++ 滚动条配置项的设置方法例子:
+```
+  <script>
+    new Lin({
+      linScrollBar: [
+        {
+          bgColor: "black"
+          height: 100
+        }
+      ]
+    });
+  </script>
+```
+目前我们在滚动条中仅给出了两种配置项：
+| 配置项 | 说明 | 默认 |
+| --- | -- | -- |
+| bgColor | 背景颜色 | #3bbbbb |
+| height | 长度 | 300 |
+
 
