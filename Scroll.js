@@ -11,9 +11,9 @@ class Lin {
     /*
      * @function Read the information entered by the user and do some initialization
      * @function 读取用户输入的信息，并且进行一些初始化。
-     * @params  
+     * @param  data {{}[]} 
      */
-    constructor(data = {}) {
+    constructor(data) {
         this.linData = data;
         this.linNum = 0;
         this.linSetContainer();
