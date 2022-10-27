@@ -1,30 +1,35 @@
-# 目前是旧版文档，不久会更新新的
-# 改变浏览器默认滑动方式
+# Scroll.js
 ## 为什么用Scroll.js
-> 浏览器的默认滑动方式是一格一格的，使用Scroll.js后能让你网页的滑动方式变成地像手机滑动浏览器一样丝滑。
+浏览器的默认滑动方式是一格一格的，使用Scroll.js后能让你网页的滑动方式变成地像手机滑动浏览器一样丝滑。
 ## 基础demo
-> 最简单的使用方法是在body里面的所有内容外面，分别嵌套一个<lin-container>双标签和<lin-box>双标签。比如像下面这样：
+最简单的使用方法是在body里面的所有内容外面，分别嵌套一个<lin-container>双标签和<lin-page>双标签,然后在script中new一个Lin(),比如像下面这样：
 ```
   <body>
     <lin-container>
-      <lin-box l="0" t="0">
+      <lin-page>
           <div>我是内容</div>
-      </lin-box>
+      </lin-page>
     </lin-container>
+
+    <script>
+      new Lin();
+    </script>
+  </body>zz
+```
+这样就能最基础地改变你页面的滑动方式了,但是我们注意到右侧的滚动条消失了，这是因为我们禁用了浏览器的默认滚动，以前的滚动条自然就不再生效了，所以我们将他隐藏了，如果你希望你的网页可以有滚动条，那么我们已经封装好了一个可以自定义的滚动条，只需要你在body里面加入<lin-scroll-bar>双标签即可，例如：
+```
+  <body>
+    <lin-scroll-bar>
+    </lin-scroll-bar>
+    <lin-container>
+      <lin-page>
+          <div>我是内容</div>
+      </lin-page>
+    </lin-container>
+
+    <script>
+      new Lin();
+    </script>
   </body>
 ```
-> 这样就能最基础地改变你页面的滑动方式了。
 
-## 进阶
-> 我们注意到在lin-box标签上我们分别添加了l="0"和t="0"两个属性，他们分别是left和top的缩写，也就是绝对定位里的left和top，你可以通过改变他们的值来改变lin-box在页面中的位置。
-> 这也意味着我们可以不止写一个lin-box，可以多个box一起使用（为以后不同盒子之间采用不同的滑动方式和速度做铺垫）。
-
-## lin-box的可用属性
-|   属性   |   描述   |
-| ---- | -------- |
-| l    | 设置绝对定位的left |
-| t    | 设置绝对定位的top |
-| b    | 设置绝对定位的bottom |
-| r    | 设置绝对定位的right |
-| w    | 设置lin-box的宽度 |
-| h    | 设置lin-box的高度 |
